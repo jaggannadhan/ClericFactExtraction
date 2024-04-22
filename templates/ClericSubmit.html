@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hopeful Flame</title>
+    <link rel="icon" href="../images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/ClericSubmit.css">
+    <script type="text/javascript" src="../script/ClericSubmit.js?v=1.0016"></script>
+</head>
+
+<body>
+
+    <div id="alert"></div>
+
+    <div class="container">
+        <h1>Input Screen</h1>
+        <h2>Enter Your Question</h2>
+        <input type="text" id="question" required placeholder="What's on your mind?">
+
+        <h2>Enter URLs</h2>
+        <textarea id="documents" required placeholder="Add Call Logs, Enter one or more URLs separated by commas"></textarea>
+
+        <button type="submit" onclick="handleSubmit()">Submit</button>
+    </div>
+
+    <div class="container">
+        <h1>Output Screen</h1>
+        <textarea id="answer" disabled style="height: 201px; width: 588px;"></textarea>
+        <button type="submit" onclick="getQuestionAndFacts()">Get Answers</button>
+    </div>
+
+</body>
+
+</html>
