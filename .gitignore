@@ -3,3 +3,4 @@ constants/
 .venv/
 src/constants/
 /.DS_Store
+/.gcloudignore
