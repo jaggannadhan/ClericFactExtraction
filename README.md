@@ -3,8 +3,8 @@ Extracting facts from call logs using Chat-GPT4 LLM, as a part of Cleric's Inter
 
 ## How it works!
 ###  After getting the data(questions and documents) from the post request, 
-#### >> Create an DB entity for the request, with fields question and status="processing".
-#### >> Create a google-cloud-task that runs in the background for Fact Extraction from the call logs using OPENAI client.
+#### >> Create a DB entity for the request, with fields -> question, status="processing".
+#### >> Create a google-cloud-task that runs in the background for Fact Extraction from the Call Logs using OPENAI client.
 #### >> Return a suitable response with code 200 to the user.
 
 ###  Background google-cloud-task:
