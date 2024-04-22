@@ -2,9 +2,8 @@
 Extracting facts from call logs using Chat-GPT4 LLM, as a part of Cleric's Internship Assignment, 
 
 ## How it works!
-### Application Structure
-The application consists of two main screens:
 
+The application consists of two main screens:
 1. **Input Screen**
     - This screen allows users to submit
         - A question
