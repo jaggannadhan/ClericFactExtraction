@@ -26,7 +26,7 @@ class CloudTaskService:
             return False, "Unable to create Queue"
 
     
-    def addOperationToQueue(self, question, documents):
+    def addOperationToQueue(self, question, call_logs):
         try:
             parent = CLOUD_CLIENT.queue_path(PROJECT_ID, LOCATION, QUEUE)
             
@@ -37,7 +37,7 @@ class CloudTaskService:
                     "headers": {"Content-Type": "application/json"},
                     "body": json.dumps({
                         "question": question,
-                        "documents": documents
+                        "callLogs": call_logs
                     }).encode()
                 }
             }

@@ -16,11 +16,15 @@ class ClericService:
         question = data.get("question")
         documents = data.get("documents")
 
+        call_logs = self.getCallLogs(documents)
+        if not call_logs:
+            return False, {"status": 404}
+
         success, msg = DS_CLIENT.add(question)
         if not success:
             return success, msg
         
-        success, msg = TASKQUEUE_CLIENT.addOperationToQueue(question, documents)
+        success, msg = TASKQUEUE_CLIENT.addOperationToQueue(question, call_logs)
         if not success:
             DS_CLIENT.deleteEntity()
         
@@ -29,9 +33,8 @@ class ClericService:
     def processSubmit(self, data):
         print(data)
         question = data.get("question")
-        documents = data.get("documents")
+        call_logs = data.get("callLogs")
 
-        call_logs = self.getCallLogs(documents)
         answer = self.extractTextFromOpenAI(question, call_logs)
         return answer
         
@@ -39,14 +42,18 @@ class ClericService:
     def getCallLogs(self, documents): 
         call_log_dict = {}
         for url in documents:
-            response = requests.get(url)
-            log = response.text
-            call_log_dict[url] = log
-
+            try:
+                response = requests.get(url)
+                log = response.text
+                call_log_dict[url] = log
+            except Exception:
+                print(traceback.format_exc())
+                return None
+            
         combined_logs = list(call_log_dict.values())
         print(combined_logs)
         return combined_logs
-        
+            
 
     def extractTextFromOpenAI(self, question, logs):
         
