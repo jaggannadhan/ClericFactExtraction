@@ -3,15 +3,17 @@ Extracting facts from call logs using Chat-GPT4 LLM, as a part of Cleric's Inter
 
 ## How it works!
 
-The application consists of two main screens:
-1. **Input Screen**
-    - This screen allows users to submit
-        - A question
-        - A list of call logs by providing one or more URLs.
-    - After submitting the above inputs, the application creates a background job, and returns 200 response to the user.
-2. **Output Screen**
-    - This screen displays the final list of facts, extracted from the documents, when the "Get Answers" button is clicked.
-
+1. **Input**
+    - Users can input a question.
+    - Users can input a list of URLs pointing to text files.
+    - Submit button triggers a POST request with the inputs.
+    - A 200 response is returned to the user.
+2. **Backend**
+    - The question is written to the database with a status of "processing".
+    - A background task is triggered to extract facts related to the question from the text files using the OpenAI APIs.
+    - The extracted facts are stored in the database entity corresponding to the question an status "done".
+3. **Output**
+    - This screen displays the list of facts, question, and status, when the "Get Answers" button is clicked.
 
 
 ## Run the following steps sequentially to deploy to Appengine
